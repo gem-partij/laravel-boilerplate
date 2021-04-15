@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Api\AuthController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,6 +16,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware(['api'])->namespace('Api')->prefix('auth')->group(function () {
+    // Route::post('register', [AuthController::class, 'register']);
+    Route::post('login', [AuthController::class, 'login']);
+});
+
+/**
+ * ===============
+ * /auth
+ * -----
+ */
+Route::middleware(['auth:api'])->namespace('Api')->prefix('auth')->group(function () {
+    Route::get('me', [AuthController::class, 'me']);
+    Route::get('refresh-token', [AuthController::class, 'refreshToken']);
+    Route::get('validate-token', [AuthController::class, 'validateToken']);
+
+    Route::post('update-profile', [AuthController::class, 'updateProfile']);
+    Route::post('logout', [AuthController::class, 'logout']);
 });

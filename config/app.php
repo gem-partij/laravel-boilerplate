@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Jakarta',
 
     /*
     |--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'id',
 
     /*
     |--------------------------------------------------------------------------
@@ -228,6 +228,20 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        /*
+         * Gemboot Aliases...
+         */
+        'GembootBadRequestException' => Gemboot\Exceptions\BadRequestException::class,
+        'GembootForbiddenException' => Gemboot\Exceptions\ForbiddenException::class,
+        'GembootNotFoundException' => Gemboot\Exceptions\NotFoundException::class,
+        'GembootServerErrorException' => Gemboot\Exceptions\ServerErrorException::class,
+        'GembootUnauthorizedException' => Gemboot\Exceptions\UnauthorizedException::class,
+        'GembootResponse' => Gemboot\Facades\GembootResponseFacade::class,
+        'GembootController' => Gemboot\Controllers\CoreRestController::class,
+        'GembootProxyController' => Gemboot\Controllers\CoreRestProxyController::class,
+        'GembootResourceController' => Gemboot\Controllers\CoreRestResourceController::class,
+        'GembootModel' => Gemboot\Models\CoreModel::class,
+        'GembootService' => Gemboot\Services\CoreService::class,
     ],
 
 ];
