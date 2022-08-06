@@ -34,7 +34,7 @@ If your computer already has Docker installed, you may create a new project by u
 docker run --rm --interactive --tty \
   --volume $PWD:/app \
   --volume ${COMPOSER_HOME:-$HOME/.composer}:/tmp \
-  composer create-project gem-partij/laravel-boilerplate example-app
+  composer create-project gem-partij/laravel-boilerplate example-app --ignore-platform-reqs
 ```
 
 ```sh
