@@ -209,7 +209,22 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        // 'ExampleClass' => App\Example\ExampleClass::class,
+        'GembootBadRequestException' => Gemboot\Exceptions\BadRequestException::class,
+        'GembootForbiddenException' => Gemboot\Exceptions\ForbiddenException::class,
+        'GembootNotFoundException' => Gemboot\Exceptions\NotFoundException::class,
+        'GembootServerErrorException' => Gemboot\Exceptions\ServerErrorException::class,
+        'GembootUnauthorizedException' => Gemboot\Exceptions\UnauthorizedException::class,
+
+        'GembootRequest' => Gemboot\Facades\GembootRequestFacade::class,
+        'GembootResponse' => Gemboot\Facades\GembootResponseFacade::class,
+
+        'GembootController' => Gemboot\Controllers\CoreRestController::class,
+        'GembootProxyController' => Gemboot\Controllers\CoreRestProxyController::class,
+        'GembootResourceController' => Gemboot\Controllers\CoreRestResourceController::class,
+
+        'GembootModel' => Gemboot\Models\CoreModel::class,
+
+        'GembootService' => Gemboot\Services\CoreService::class,
     ])->toArray(),
 
 ];
