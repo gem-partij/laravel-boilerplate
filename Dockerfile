@@ -33,6 +33,10 @@ RUN apt-get install -y wget
 RUN wget https://github.com/mongodb/mongo-php-driver/releases/download/1.14.0/mongodb-1.14.0.tgz
 RUN pecl install -f mongodb-1.14.0.tgz
 
+# install nginx
+RUN apt-get install nginx -y
+RUN apt-get install supervisor -y
+
 # Get latest Composer (from docker hub)
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
@@ -45,9 +49,11 @@ RUN mkdir -p /home/$user/.composer && \
     chown -R $user:$user /home/$user
 
 # Set timezone
-ENV TZ Asia/Jakarta
+# ENV TZ Asia/Jakarta
 
 # Set working directory
 WORKDIR /var/www
 
-USER $user
+# USER $user
+
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
