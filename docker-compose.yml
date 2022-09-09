@@ -45,7 +45,7 @@ services:
     #     expose:
     #         - 80
     #     ports:
-    #         - "${APP_PORT:-8000}:80"
+    #         - "${APP_PORT_FORWARD:-8000}:80"
     #     volumes:
     #         - ./:/var/www:ro
     #         - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
@@ -70,15 +70,15 @@ services:
     #     expose:
     #         - 3306
     #     ports:
-    #         - "${DB_PORT:-3306}:3306"
+    #         - "${DB_PORT_FORWARD:-3306}:3306"
     #     volumes:
     #         - ./docker/mysql/data:/var/lib/mysql
     #     networks:
     #         - default
-    #     healthcheck:
-    #         test: ["CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}"]
-    #         retries: 3
-    #         timeout: 5s
+    #     # healthcheck:
+    #     #     test: ["CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}"]
+    #     #     retries: 3
+    #     #     timeout: 5s
 
     #MongoDB Service
     mongodb:
@@ -92,7 +92,7 @@ services:
         expose:
             - 27017
         ports:
-            - "${DB_PORT:-27017}:27017"
+            - "${DB_PORT_FORWARD:-27017}:27017"
         volumes:
             - ./docker/mongodb/data:/data/db
         networks:
@@ -109,7 +109,7 @@ services:
         expose:
             - 6379
         ports:
-            - "${REDIS_PORT:-6379}:6379"
+            - "${REDIS_PORT_FORWARD:-6379}:6379"
         # volumes:
         #     - ./docker/log/redis:/var/log/redis
         networks:
