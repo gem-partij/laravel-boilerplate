@@ -1,7 +1,6 @@
 version: "3.9"
 
 services:
-
     #App Service (PHP)
     app:
         # build:
@@ -80,45 +79,44 @@ services:
     #     #     retries: 3
     #     #     timeout: 5s
 
-    #MongoDB Service
-    mongodb:
-        image: mongo
-        container_name: "${MONGO_CONTAINER_NAME}"
-        restart: unless-stopped
-        environment:
-            TZ: "${APP_TZ}"
-            MONGO_INITDB_ROOT_USERNAME: "${DB_USERNAME}"
-            MONGO_INITDB_ROOT_PASSWORD: "${DB_PASSWORD}"
-        expose:
-            - 27017
-        ports:
-            - "${DB_PORT_FORWARD:-27017}:27017"
-        volumes:
-            - ./docker/mongodb/data:/data/db
-        networks:
-            - default
+    # #MongoDB Service
+    # mongodb:
+    #     image: mongo
+    #     container_name: "${MONGO_CONTAINER_NAME}"
+    #     restart: unless-stopped
+    #     environment:
+    #         TZ: "${APP_TZ}"
+    #         MONGO_INITDB_ROOT_USERNAME: "${DB_USERNAME}"
+    #         MONGO_INITDB_ROOT_PASSWORD: "${DB_PASSWORD}"
+    #     expose:
+    #         - 27017
+    #     ports:
+    #         - "${DB_PORT_FORWARD:-27017}:27017"
+    #     volumes:
+    #         - ./docker/mongodb/data:/data/db
+    #     networks:
+    #         - default
 
-    #Redis Service
-    redis:
-        image: redis:alpine
-        container_name: "${REDIS_CONTAINER_NAME}"
-        restart: unless-stopped
-        environment:
-            TZ: "${APP_TZ}"
-        command: ["redis-server", "--requirepass", "${REDIS_PASSWORD}"]
-        expose:
-            - 6379
-        ports:
-            - "${REDIS_PORT_FORWARD:-6379}:6379"
-        # volumes:
-        #     - ./docker/log/redis:/var/log/redis
-        networks:
-            - default
-        # healthcheck:
-        #     test: ["CMD", "redis-cli", "ping"]
-        #     retries: 3
-        #     timeout: 5s
-
-networks:
-    default:
-        driver: bridge
+    # #Redis Service
+    # redis:
+    #     image: redis:alpine
+    #     container_name: "${REDIS_CONTAINER_NAME}"
+    #     restart: unless-stopped
+    #     environment:
+    #         TZ: "${APP_TZ}"
+    #     command: ["redis-server", "--requirepass", "${REDIS_PASSWORD}"]
+    #     expose:
+    #         - 6379
+    #     ports:
+    #         - "${REDIS_PORT_FORWARD:-6379}:6379"
+    #     # volumes:
+    #     #     - ./docker/log/redis:/var/log/redis
+    #     networks:
+    #         - default
+    #     # healthcheck:
+    #     #     test: ["CMD", "redis-cli", "ping"]
+    #     #     retries: 3
+    #     #     timeout: 5s
+# networks:
+#     default:
+#         driver: bridge
